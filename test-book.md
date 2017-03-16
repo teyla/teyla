@@ -6,6 +6,34 @@ The`style`prop can be a plain old JavaScript object. That's the simplest and wha
 
 As a component grows in complexity, it is often cleaner to use`StyleSheet.create`to define several styles in one place. Here's an example:
 
+```
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+
+class LotsOfStyles extends Component {
+  render() {
+    return (
+      <View>
+        <Text style={styles.red}>just red</Text>
+        <Text style={styles.bigblue}>just bigblue</Text>
+        <Text style={[styles.bigblue, styles.red]}>bigblue, then red</Text>
+        <Text style={[styles.red, styles.bigblue]}>red, then bigblue</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  bigblue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+  },
+```
+
 One common pattern is to make your component accept a`style`prop which in turn is used to style subcomponents. You can use this to make styles "cascade" the way they do in CSS.
 
 There are a lot more ways to customize text style. Check out the[Text component reference](https://facebook.github.io/react-native/docs/text.html)for a complete list.
